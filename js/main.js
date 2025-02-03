@@ -23,6 +23,8 @@ const contactForm = document.getElementById('contact-form');
 contactForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log('Contact form submitted');
+    alert('Thank you for your message. We will get back to you soon!');
+    contactForm.reset();
 });
 
 // Modal functionality
@@ -48,10 +50,10 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Discord ID validation
+// Discord username validation
 function validateDiscordID(discordId) {
-    // Basic Discord ID format validation (username#0000)
-    const discordRegex = /^.{3,32}#[0-9]{4}$/;
+    // Basic Discord username validation (2-32 characters, no special characters except _)
+    const discordRegex = /^[a-zA-Z0-9_]{2,32}$/;
     return discordRegex.test(discordId);
 }
 
@@ -66,9 +68,9 @@ joinForm.addEventListener('submit', (e) => {
         email: document.getElementById('email').value || 'Not provided'
     };
 
-    // Validate Discord ID
+    // Validate Discord username
     if (!validateDiscordID(formData.discord)) {
-        alert('Please enter a valid Discord ID (username#0000)');
+        alert('Please enter a valid Discord username (2-32 characters, only letters, numbers, and underscores)');
         return;
     }
 
